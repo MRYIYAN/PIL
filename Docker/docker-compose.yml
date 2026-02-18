@@ -51,4 +51,13 @@ services:
     container_name: Servidor Flask
     env_file:
       - ../Server_Flask/.env
-       
+    networks:
+      - compilador_network
+    ports:
+      - "5000:5000"
+    volumes: 
+      - ../Server_Flask:/flask_server.py
+    depends_on:
+      - compilador C
+    tty: true 
+
