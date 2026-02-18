@@ -1,0 +1,54 @@
+#============================================#
+# DOCKER COMPOSE para compilador con hot reload
+#============================================#
+
+#-------------------#
+# Redes internas 
+#-------------------#
+
+networks:
+  compilador_network:
+    driver: bridge
+
+#------------------------------------#
+# Servicios (CAMBIAR RUTA DE ARCHIVO CUANDO SEA NECESARIO)
+#------------------------------------#
+
+
+services:
+  compilador:
+    build:
+       context: ..
+       dockerfile: Docker/Dockerfile.core
+    container_name:  Compilador C
+    networks:
+      - compilador_network
+    volumes:
+      - ../Clase:/arhivo
+    extra_hosts: 
+      - "host.docker.internal:host-gateway"
+    tty: true
+    command: >
+      bash -c 'last_build=0;
+      sleep 1;
+      while true; do
+        new_time=$$ (find /archivo  -type -f -printf "%T@ %p\n" | sort -n | tail -1 | cut -d " " -f 1);
+        if [ "$$new_time" != "$$last_build" ]; then
+          echo "[[COMPILADOR] Archivo modificado compilando...";
+          make -C /Clase/archivo && last_build=$$new_time;
+        fi;
+        sleep 1;
+      done'
+
+#============================================#
+# Módulo de servidor Flask de Python
+#============================================#
+
+  servidor_flask: 
+    build:
+      context: .. 
+      dockerfile: Docker/Dockerfile.flask
+    container_name: Servidor Flask
+    env_file:
+      - ../Server_Flask/.env
+       

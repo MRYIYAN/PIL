@@ -1,0 +1,48 @@
+#======================================================================================#
+# DOCKERFILE - Compilador realizado por docker para este entorno de C (Con AutoBuild)
+#======================================================================================#
+
+#-----------------------------------#
+# Imagen base de Ubuntu
+#-----------------------------------#
+
+FROM gcc:13
+
+RUN apt-get update && apt-get upgrade && rm -rf /var/lib/apt/lists/*
+
+#-------------------------------------------#
+# Hot reload y utilidades para el desarrollo
+#-------------------------------------------#
+
+RUN apt-get update && apt-get install -y inotify-tools make gcc
+
+#-------------------------------------------#
+# Uso de metadataos para el contenedor  
+#-------------------------------------------#
+
+LABEL maintainer="C Compiler"
+LABEL description=" Compilación automática y hot reload para el contendor"
+
+#-------------------------------------------#
+# Directorio de trabajo (Que cambia a necesidad)
+#-------------------------------------------#
+
+WORKDIR /PIL/
+
+#--------------------------------------------#
+# Usar código fuente del host
+#--------------------------------------------#
+
+COPY :/PIL /PIL/
+
+#--------------------------------------------#
+# Usar herramietnas auxiliares para el hot reload
+#--------------------------------------------#
+
+RUN apt-get update && apt-get install -y inotify-tools && rm -rf /var/lib/apt/lists/*
+
+#--------------------------------------------#
+# Script para compilación automática y en bucle
+#--------------------------------------------#
+
+CMD ["bash", "-c", "echo '[COMPILADOR] Iniciando compilación automática y esperando cambios....'; while true; do inotifywait -e modify,create,delete -r /PIL; do echo '[COMPILADOR] Cambios detectados, compilando...'; make -C /PIL && echo '[COMPILADOR] Compilación exitosa'; done"]
