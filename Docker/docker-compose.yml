@@ -60,4 +60,3 @@ services:
     depends_on:
       - compilador C
     tty: true 
-

@@ -1,1 +1,15 @@
+
+#============================================#
+# Dockerfile flas para modulo de compilador -C
+#============================================#
+
+
+#============================================#
+#          Image base de python slim
+#============================================#
 FROM python:3.11-slim
+
+RUN apt-get update && apt-get install -y inotify-tools
+
+COPY Server_Flask/requirements.txt /app/requirements.txt 
+RUN pip install --no-cache-dir -r /app/requirements.txt 
