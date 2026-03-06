@@ -57,6 +57,7 @@ int main()
             exit(2);
         }
 
+
     } while (value != -999);  
     // El ciclo continúa mientras el número sea diferente de -999
     // IMPORTANTE: el -999 también se guarda en el arreglo
