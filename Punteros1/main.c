@@ -76,11 +76,11 @@ int main()
     for (k = 0; k < n; k++) {
         printf("%d\n", principio[k]); // Imprime cada número ingresado
     
-        printf("\n"); // Imprime una línea en blanco entre números
-    }
+        printf("\n\n"); // Imprime una línea en blanco entre números
 
     // Se libera la memoria reservada
     free(principio);
 
     return 0;
+    }
 }
