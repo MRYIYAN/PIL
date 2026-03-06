@@ -1,6 +1,8 @@
+//=======================================================//
+//                   IMPORTS                             //
+//=======================================================//
 #include <stdio.h>
 #include "empleado_proyecto.h"
-
 
 // Esta funcion imprime los proyectos donde participa un empleado
 // le pasamos el empleado por puntero
@@ -23,7 +25,13 @@ void proyectosDeEmpleado(Empleado *e, Proyecto *p, int nProy)
     }
 }
 
-// Esta funcion imprime los empleados de un proyecto
+
+//=======================================================//
+//  Listados de empleados por proyecto                   //
+//=======================================================//
+
+// Esta función imprime la lista de empleados de un proyecto dado
+// Recorremos el arreglo hasta encontrar un NULL, que marca el fin
 void empleadosDeProyecto(Proyecto *p)
 {
     printf("\nEmpleados del proyecto: %s\n", p->titulo);
@@ -42,7 +50,12 @@ void empleadosDeProyecto(Proyecto *p)
 
 
 
-// Aqui buscamos el empleado con mas y menos proyectos
+//=======================================================//
+//  Análisis de cargas de trabajo                        //
+//=======================================================//
+
+// Aquí buscamos el empleado con más y menos proyectos asignados
+// Usamos contadores y comparamos mientras recorremos empleados y proyectos
 void empleadoMasMenos(Empleado *e, int nEmp, Proyecto *p, int nProy)
 {
     int max = -1;
@@ -90,11 +103,16 @@ void empleadoMasMenos(Empleado *e, int nEmp, Proyecto *p, int nProy)
 
 
 
-// Proyecto con mas y menos empleados
+//=======================================================//
+//  Estadísticas de proyectos                            //
+//=======================================================//
+
+// Encuentra el proyecto con más empleados y el que tiene menos
+// Itera sobre el listado y mantiene máximos y mínimos actualizados
 void proyectoMasMenos(Proyecto *p, int nProy)
 {
     int max = -1;
-    int min = 99;
+    int min = 99; 
     int posMax = 0;
     int posMin = 0;
 
@@ -123,9 +141,9 @@ void proyectoMasMenos(Proyecto *p, int nProy)
         }
     }
 
-    printf("\nProyecto con MAS empleados: %s (%d)\n",
+    printf("\nProyecto con mas empleados: %s (%d)\n",
            p[posMax].titulo, max);
 
-    printf("Proyecto con MENOS empleados: %s (%d)\n",
+    printf("Proyecto con menos empleados: %s (%d)\n",
            p[posMin].titulo, min);
 }

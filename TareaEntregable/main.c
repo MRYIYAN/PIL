@@ -1,5 +1,5 @@
 //==========================================================//
-// TAREA2 ENTREGABLE 6/03/2026
+//                  TAREA2 ENTREGABLE 6/03/2026             //
 //==========================================================//
 
 // Se define una estrutura de tipo "empleado" que almacenará el nombre del empleado el apellido del empleado,
@@ -15,13 +15,22 @@
 
 //==========================================================//
 
+//=======================================================//
+//                   IMPORTS                             //
+//=======================================================//
 #include <stdio.h>
 #include <string.h>
 #include "empleado_proyecto.h"
 
+
 int main()
 {
-    // Creamos los empleados  
+    //=======================================================//
+    //  Inicialización de datos                              //
+    //=======================================================//
+
+    // Creamos y llenamos los empleados 
+    // Los inicializamos directamente usando la lista.
     Empleado e[7] = {
         {"Juan","Pedraza",25,1245.50,10010},
         {"Marta","Hidalgo",31,1732.70,10011},
@@ -32,7 +41,7 @@ int main()
         {"Pedro","Rius",24,1545.33,10016}
     };
 
-    // Creamos los proyectos
+    // Creamos los proyectos 5
     Proyecto p[5];
 
     // Proyecto 1
@@ -53,8 +62,8 @@ int main()
     p[1].empleados[3] = NULL;
     p[1].empleados[4] = NULL;
 
-    // Proyecto 3
-    strcpy(p[2].titulo,"Minimizacion riesgos escaleras");
+    // Proyecto 3 
+    strcpy(p[2].titulo,"Minimizacion riesgos escaleras"); 
     p[2].meses = 26;
     p[2].empleados[0] = &e[0];
     p[2].empleados[1] = NULL;
@@ -80,10 +89,20 @@ int main()
     p[4].empleados[3] = &e[4];
     p[4].empleados[4] = &e[6];
 
-    // Probamos las funciones
+    //=======================================================//
+    //  Ejecución de funciones de prueba                     //
+    //=======================================================//
+
+    // mirar los proyectos en los que está Juan
     proyectosDeEmpleado(&e[0], p, 5);
+
+    // listar empleados del último proyecto
     empleadosDeProyecto(&p[4]);
+
+    // calcular quién tiene más y menos proyectos
     empleadoMasMenos(e, 7, p, 5);
+
+    // y qué proyecto tiene más/menos gente
     proyectoMasMenos(p, 5);
 
     return 0;

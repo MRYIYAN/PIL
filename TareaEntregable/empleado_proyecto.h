@@ -1,15 +1,20 @@
 #ifndef EMPLEADO_PROYECTO_H
 #define EMPLEADO_PROYECTO_H
 
-#include <stdlib.h> 
+//=======================================================//
+//                   IMPORTS                             //
+//=======================================================//
+#include <stdlib.h>
 
-#define MAX 5   // maximo empleados por proyecto (lo dice el enunciado)
+#define MAX 5   // máximo empleados por proyecto
 
 
-//===========================================================//
+//=======================================================//
+//               ESTRUCTURAS PRINCIPALES                 //
+//=======================================================//
+
 // Estructura empleado
 // usamos typedef porque así se ha solicitado
-//===========================================================//
 typedef struct {
     char nombre[50];
     char apellido[50];
@@ -19,23 +24,25 @@ typedef struct {
 } Empleado;
 
 
-// Estructura proyecto
-// tiene un array de punteros a empleados (no empleados normales!)
+// Estructura proyecto tiene un array de punteros a empleados
 typedef struct {
     char titulo[150];
-    Empleado *empleados[MAX];   // aqui guardamos direcciones
+    Empleado *empleados[MAX];   // aquí guardamos direcciones
     int meses;
 } Proyecto;
 
 
-// Funciones que vamos a usar
-// todas reciben los punteros 
+//=======================================================//
+//                 PROTOTIPOS DE FUNCIONES               //
+//=======================================================//
+// Todas las funciones trabajan con punteros para evitar
+// copias de estructuras y manejar arreglos dinámicos
 
-void proyectosDeEmpleado(Empleado *e, Proyecto *p, int nProy);
+void proyectosDeEmpleado(Empleado *e, Proyecto *p, int nProy); // Imprime los proyectos de un empleado dado
 
 void empleadosDeProyecto(Proyecto *p);
 
-void empleadoMasMenos(Empleado *e, int nEmp, Proyecto *p, int nProy);
+void empleadoMasMenos(Empleado *e, int nEmp, Proyecto *p, int nProy); // Encuentra el empleado con más y menos proyectos asignados
 
 void proyectoMasMenos(Proyecto *p, int nProy);
 
