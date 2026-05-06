@@ -47,18 +47,35 @@ public:
     void ponDenominador(int den);
 
     //=======================================================//
-    //  Operador suma                                        //
+    //  Operadores aritméticos                               //
     //=======================================================//
-    // Permite sumar dos fracciones usando el operado
+    // Permiten sumar, restar, multiplicar y dividir fracciones
     //=======================================================//
     fraccion operator+(const fraccion& otraFrac) const;
+    fraccion operator-(const fraccion& otraFrac) const;
+    fraccion operator*(const fraccion& otraFrac) const;
+    fraccion operator/(const fraccion& otraFrac) const;
+
+    //=======================================================//
+    //  Expresion decimal                                    //
+    //=======================================================//
+    // Devuelve la fraccion como numero decimal
+    //=======================================================//
+    double decimal() const;
+
+    //=======================================================//
+    //  Operador igualdad                                    //
+    //=======================================================//
+    // Comprueba si dos fracciones son iguales
+    //=======================================================//
+    bool operator==(const fraccion& otraFrac) const;
 
     //=======================================================//
     //  Funcion imprime                                      //
     //=======================================================//
     // Muestra la fraccion por pantalla
     //=======================================================//
-    void imprime();
+    void imprime() const;
 };
 
 #endif

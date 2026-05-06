@@ -88,11 +88,81 @@ fraccion fraccion::operator+(const fraccion& otraFrac) const
 }
 
 //=======================================================//
+//  Operador resta                                       //
+//=======================================================//
+// Resta dos fracciones usando la formula:
+// a/b - c/d = (a*d - b*c) / (b*d)
+//=======================================================//
+fraccion fraccion::operator-(const fraccion& otraFrac) const
+{
+    fraccion resultado(
+        numerador * otraFrac.denominador - denominador * otraFrac.numerador,
+        denominador * otraFrac.denominador
+    );
+
+    return resultado;
+}
+
+//=======================================================//
+//  Operador multiplicacion                              //
+//=======================================================//
+// Multiplica dos fracciones multiplicando numeradores
+// y denominadores entre si
+//=======================================================//
+fraccion fraccion::operator*(const fraccion& otraFrac) const
+{
+    fraccion resultado(
+        numerador * otraFrac.numerador,
+        denominador * otraFrac.denominador
+    );
+
+    return resultado;
+}
+
+//=======================================================//
+//  Operador division                                    //
+//=======================================================//
+// Divide dos fracciones multiplicando por la inversa
+//=======================================================//
+fraccion fraccion::operator/(const fraccion& otraFrac) const
+{
+    fraccion resultado(
+        numerador * otraFrac.denominador,
+        denominador * otraFrac.numerador
+    );
+
+    return resultado;
+}
+
+//=======================================================//
+//  Expresion decimal                                    //
+//=======================================================//
+// Devuelve la fraccion como numero decimal
+// Se usa casting para que no haga division entera
+//=======================================================//
+double fraccion::decimal() const
+{
+    return (double)numerador / denominador;
+}
+
+//=======================================================//
+//  Operador igualdad                                    //
+//=======================================================//
+// Compara si dos fracciones son iguales
+// Como las fracciones se normalizan, basta comparar datos
+//=======================================================//
+bool fraccion::operator==(const fraccion& otraFrac) const
+{
+    return numerador == otraFrac.numerador &&
+           denominador == otraFrac.denominador;
+}
+
+//=======================================================//
 //  Funcion imprime                                      //
 //=======================================================//
 // Imprime la fraccion usando sus propios datos
 //=======================================================//
-void fraccion::imprime()
+void fraccion::imprime() const
 {
     cout << endl << "La fraccion es:" << endl;
     cout << numerador << " / " << denominador << endl;

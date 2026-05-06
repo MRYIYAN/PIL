@@ -23,11 +23,14 @@ int main()
     fraccion q(7, 9);
 
     //=======================================================//
-    //  Suma de fracciones                                   //
+    //  Operaciones con fracciones                           //
     //=======================================================//
-    // Se usa el operador 
+    // Se usan los operadores sobrecargados
     //=======================================================//
     fraccion suma = p + q;
+    fraccion resta = p - q;
+    fraccion multiplicacion = p * q;
+    fraccion division = p / q;
 
     //=======================================================//
     //  Mostrar resultado                                    //
