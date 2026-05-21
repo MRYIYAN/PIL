@@ -74,8 +74,7 @@ void fraccion::ponDenominador(int den)
 //=======================================================//
 //  Operador suma                                        //
 //=======================================================//
-// Suma dos fracciones usando la formula:
-// a/b + c/d = (a*d + b*c) / (b*d)
+// Suma dos fracciones usando la formula
 //=======================================================//
 fraccion fraccion::operator+(const fraccion& otraFrac) const
 {
@@ -90,8 +89,7 @@ fraccion fraccion::operator+(const fraccion& otraFrac) const
 //=======================================================//
 //  Operador resta                                       //
 //=======================================================//
-// Resta dos fracciones usando la formula:
-// a/b - c/d = (a*d - b*c) / (b*d)
+// Resta dos fracciones usando la formula
 //=======================================================//
 fraccion fraccion::operator-(const fraccion& otraFrac) const
 {
